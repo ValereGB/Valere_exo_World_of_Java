@@ -3,6 +3,10 @@ package worldOfJava;
 import java.util.Scanner;
 
 public class Monde {
+	/**
+	 * Definition principal d'un personnage au choix.
+	 * @return
+	 */
 	public static Personnage personnageFactory() {
 		// Demander a l'utilisateur un nom de personnage
 				Scanner sc = new Scanner(System.in);
@@ -20,6 +24,7 @@ public class Monde {
 				System.out.println(p1);
 				return p1;
 	}
+	//Simple affichage de la méthode précedente
 	public static void afficherInformations()
 	   {
 	       System.out.println(personnageFactory());
