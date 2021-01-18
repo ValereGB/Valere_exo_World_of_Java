@@ -3,13 +3,13 @@ package worldOfJava;
 import java.util.Scanner;
 
 public class main {
-	
+
 	/**
-	* Créer un personnage avec tous ses attributs. 
-	* Demande a l'utilisateur d'entrer le nom du personnage.
-	* retour: une instance de la classe Personnage correctement instancié.
-	
-	
+	 * Créer un personnage avec tous ses attributs. 
+	 * Demande a l'utilisateur d'entrer le nom du personnage.
+	 * retour: une instance de la classe Personnage correctement instancié.
+
+
 	public static void personnageFactory(){
 	    // Demander a l'utilisateur un nom de personnage
 		Scanner sc = new Scanner(System.in);
@@ -24,10 +24,10 @@ public class main {
 	    // Retourner l'instance du personnage
 		System.out.println(p1);
 	}
-	**/
-	
+	 **/
+
 	public static void main(String[] args) {
-		Personnage p1 = Monde.personnageFactory();
+		Monde.combat(Monde.personnageFactory(), Monde.monstreFactory());
 	}
 
 }

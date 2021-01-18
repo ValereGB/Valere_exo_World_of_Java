@@ -10,7 +10,7 @@ public abstract class AbstractCombattant {
 	public int QspellCd;
 
 	public AbstractCombattant() {}
-	
+
 	/**
 	 * Mise en place du constructeur de la classe mère
 	 * @param pointDeVie

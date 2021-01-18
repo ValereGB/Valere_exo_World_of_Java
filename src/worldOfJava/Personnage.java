@@ -6,7 +6,7 @@ public class Personnage extends AbstractCombattant {
 	public Personnage() {
 		super();	
 	}
-	
+
 	/**
 	 * Mise en place du constructeur
 	 * @param pointDeVie
@@ -15,7 +15,7 @@ public class Personnage extends AbstractCombattant {
 	 * @param QspellCd
 	 */
 	public Personnage(int pointDeVie, int degat, String nom, int QspellCd) {
-		super(nom , degat, pointDeVie, QspellCd);
+		super(nom , pointDeVie, degat, QspellCd);
 	}
 
 	/**
@@ -54,11 +54,11 @@ public class Personnage extends AbstractCombattant {
 	@Override
 	public String toString() {
 		return "Le personnage " + this.nom + " à " + this.pointDeVie + " points de vie et une moyenne de " + this.degat + " dégats de base,"
-				+ " de plus le cd de son sort Q est de  " + this.QspellCd + " secondes. Bonne chance.";
+				+ " de plus le cd de son sort Q est de  " + this.QspellCd + " secondes. Bonne chance. \n ";
 	}
 
 
-	
-	
+
+
 
 }
