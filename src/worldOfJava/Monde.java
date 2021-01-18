@@ -25,7 +25,7 @@ public class Monde {
 		System.out.println(p1);
 		return p1;
 	}
-	
+
 	/**
 	 * Définition aléatoire d'un nom pour l'ennemi ou Monstre
 	 */
@@ -56,34 +56,42 @@ public class Monde {
 		System.out.println(m1);
 		return m1;
 	}
-	
+	/**
+	 * Création d'une phase de combat entre le personnage et l'ennemi 
+	 * Gestion des dégats et des points de vies
+	 * Affichage d'un résultat spécifique en fonction du gagnant
+	 * @param personnage
+	 * @param monstre
+	 */
 	public static void combat(AbstractCombattant personnage, AbstractCombattant monstre)
 	{
-	  boolean turn = true;
-	  while (personnage.getPointDeVie() > 0 && monstre.getPointDeVie() > 0 ) {
-		  if(turn) {
-			  System.out.println("Votre attaque inflige "+personnage.getDegat()+".");
-			  monstre.setPointDeVie(monstre.getPointDeVie() - personnage.getDegat());
-			  System.out.println("Au tour de l'ennemi !");
-		  }
-		  else {
-			  System.out.println("L'attaque ennemi vous inflige "+monstre.getDegat()+".");
-			  personnage.setPointDeVie(personnage.getPointDeVie() - monstre.getDegat());
-			  System.out.println("A votre tour !");
-		  }
-		  turn = !turn;
-	  }
-	  System.out.printf("Il reste " + personnage.pointDeVie + " points de vie à " + personnage.getNom() +
-			  " et il reste " + monstre.pointDeVie + " points de vie à "+ monstre.getNom()+" ! \n"  );
-	  
-	  if(personnage.getPointDeVie() < 0 && monstre.getPointDeVie() > 0) {
-		  System.out.println(monstre.getPointDeVie() + " à tuer "+personnage.getNom()+" ! \n");
-		  System.out.println("Bah super t'as feed un "+ monstre.getNom() +"... " );
-	  }
-	  else {
-		  System.out.println(personnage.getNom() + " à tuer "+monstre.getNom()+" !");
-		  System.out.println("Ha super "+ personnage.getNom() +" tu prend tout les kills mais tu carry pas ! " );
-	  }
+		boolean turn = true;
+		//  Phase de combat et gestion des points de vies
+		while (personnage.getPointDeVie() > 0 && monstre.getPointDeVie() > 0 ) {
+			if(turn) {
+				System.out.println("Votre attaque inflige "+personnage.getDegat()+".");
+				monstre.setPointDeVie(monstre.getPointDeVie() - personnage.getDegat());
+				System.out.println("Au tour de l'ennemi !");
+			}
+			else {
+				System.out.println("L'attaque ennemi vous inflige "+monstre.getDegat()+".");
+				personnage.setPointDeVie(personnage.getPointDeVie() - monstre.getDegat());
+				System.out.println("A votre tour !");
+			}
+			turn = !turn;
+		}
+		// Affichage du résultat du match
+		System.out.printf("Il reste " + personnage.pointDeVie + " points de vie à " + personnage.getNom() +
+				" et il reste " + monstre.pointDeVie + " points de vie à "+ monstre.getNom()+" ! \n"  );
+		// Affichage différent selon le vainqueurs
+		if(personnage.getPointDeVie() < 0 && monstre.getPointDeVie() > 0) {
+			System.out.println(monstre.getPointDeVie() + " à tuer "+personnage.getNom()+" ! \n");
+			System.out.println("Bah super t'as feed un "+ monstre.getNom() +"... " );
+		}
+		else {
+			System.out.println(personnage.getNom() + " à tuer "+monstre.getNom()+" !");
+			System.out.println("Ha super "+ personnage.getNom() +" tu prend tout les kills mais tu carry pas ! " );
+		}
 	}
 
 	//Simple affichage de la méthode précedente
