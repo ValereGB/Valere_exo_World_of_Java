@@ -1,13 +1,12 @@
 package worldOfJava;
 
-public abstract class AbstractCombattant {
+public abstract class AbstractCombattant implements ICombattant {
 	/**
 	 * Définition des variables qui représenteront les statistiques du combattant
 	 */
 	public String nom;
 	public int pointDeVie;
 	public int degat;
-	public int QspellCd;
 
 	public AbstractCombattant() {}
 
@@ -18,12 +17,11 @@ public abstract class AbstractCombattant {
 	 * @param nom
 	 * @param QspellCd
 	 */
-	public AbstractCombattant(String nom, int pointDeVie, int degat, int QspellCd){
+	public AbstractCombattant(String nom, int pointDeVie, int degat){
 		super();
 		this.pointDeVie = pointDeVie;
 		this.degat = degat;
 		this.nom = nom;
-		this.QspellCd = QspellCd;
 	}
 
 	/**
@@ -50,11 +48,30 @@ public abstract class AbstractCombattant {
 		this.degat = degat;
 	}
 
-	public int getQspellCd() {
-		return QspellCd;
+	
+	@Override
+	public void attaquer(ICombattant adversaire) {
+		System.out.println("Votre attaque inflige "+this.getDegat()+" points de dégats.");
+		adversaire.defendre(this.getDegat());
+		System.out.println("Au tour de l'ennemi !");
+		
 	}
-	public void setQspellCd(int qspellCd) {
-		QspellCd = qspellCd;
+
+	@Override
+	public void defendre(int degat) {
+		this.setPointDeVie(this.getPointDeVie()-degat);
+		
 	}
+	
+	
+    @Override
+    public String toString() {
+        return "AbstractCombattant{" +
+                "nom='" + nom + '\'' +
+                ", degat=" + degat +
+                ", pointDeVie=" + pointDeVie +
+                '}';
+    }
+	
 
 }

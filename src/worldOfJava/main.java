@@ -27,7 +27,7 @@ public class main {
 	 **/
 
 	public static void main(String[] args) {
-		Monde.combat(Monde.personnageFactory(), Monde.monstreFactory());
+		Monde.combat(Monde.PersonnageFactory(), Monde.monstreFactory());
 	}
 
 }
