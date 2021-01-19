@@ -1,5 +1,7 @@
 package worldOfJava;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,7 +14,7 @@ public class Monde {
      * @param personnage
      * @param monstre
      */
-    public static void combat(Personnage personnage, Monstre monstre) {
+    public static void combat(ICombattant personnage, ICombattant monstre) {
         int tour = 1;
         boolean isTurn = true;
 
@@ -36,7 +38,7 @@ public class Monde {
      * @param personnage
      * @param monstre
      */
-    public static void quiGagne(Personnage personnage, Monstre monstre) {
+    public static void quiGagne(ICombattant personnage, ICombattant monstre) {
         if (personnage.getPointDeVie() > 0) {
             System.out.println(personnage.getNom() + " a gagné !");
         } else {
@@ -50,7 +52,8 @@ public class Monde {
      */
     public static Personnage PersonnageFactory() {
         //Nouveau Personnage
-        Personnage p = new Personnage(0, 0, "");
+        Personnage p = new Personnage("", 0, 0, classeFactory());
+        System.out.println("Création d'un personnage ---------");
 
         // Vérifie que le nom n'est pas égal à rien
         while(p.getNom().equals("")) {
@@ -58,9 +61,9 @@ public class Monde {
             p.setNom(scanner.next());
         }
         // Vérifie que les degats ne sont pas égaux à 0
-        while(p.getDegat() == 0) {
+        while(p.getDegats() == 0) {
             System.out.println("Saisir les dégats :");
-            p.setDegat(scanner.nextInt());
+            p.setDegats(scanner.nextInt());
         }
         // Vérifie que les points de vie ne sont pas égaux à 0
         while(p.getPointDeVie() == 0) {
@@ -74,17 +77,43 @@ public class Monde {
      * Cette méthode créer et retourne un monstre
      * @return
      */
-    public static Monstre monstreFactory() {
-		Scanner sc = new Scanner(System.in);
-		String nom = genererNom();
-		System.out.println("Saisir les dégats du monstre: ");
-		int degat = sc.nextInt();
-		System.out.println("Saisir les points de vie du monstre: ");
-		int pointDeVie = sc.nextInt();
-		Monstre m1 = new Monstre(nom, degat, pointDeVie);
-		System.out.println(m1);
-		return m1;
-	}
+    public static Monstre MonstreFactory() {
+        Monstre m = new Monstre(genererNom(), 5, 50);
+        return m;
+    }
+
+    /**
+     * Cette méthode créer et retourne une BasicAttaque
+     * @return
+     */
+    public static BasicAttaque basicAttaqueFactory() {
+        System.out.println("Création d'un attaque ---------");
+        BasicAttaque a = new BasicAttaque("", "Ceci est une attaque", 10, 50);
+        System.out.println("Nom :");
+        a.setNom(scanner.next());
+        return a;
+    }
+
+    /**
+     * Cette méthode créer et retourne une classe
+     * @return
+     */
+    public static Classe classeFactory() {
+        System.out.println("Création d'une classe ----------");
+        Classe c = new Classe();
+        System.out.println("Nom :");
+        c.setNom(scanner.next());
+
+        // Création d'une liste d'attaque pour la classe
+        List<IAttaque> attaques = new ArrayList<>();
+        attaques.add(basicAttaqueFactory());
+        attaques.add(basicAttaqueFactory());
+
+        c.setAttaques(attaques);
+
+        return c;
+    }
+
     /**
      * Cette méthode génère un nom aléatoire
      * @return
@@ -109,4 +138,5 @@ public class Monde {
     {
         // TODO
     }
+
 }

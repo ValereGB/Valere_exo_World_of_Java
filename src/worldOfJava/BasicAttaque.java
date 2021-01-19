@@ -1,64 +1,85 @@
 package worldOfJava;
 
-public class BasicAttaque implements IAttaque {
+import java.util.Random;
 
-	public int degats;
-	public double chanceToucher;
-	
-	public basicAttaque(int degats, double chanceToucher)
-	{
-		this.degats = degats;
-		this.chanceToucher = chanceToucher;
-		
-	}
+public class BasicAttaque implements IAttaque{
 
-	@Override
-	public int LancerAttaque(ICombattant lanceur, ICombattant cible) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    private String nom;
+    private String description;
+    private int degats;
+    private double chanceToucher;
 
-	@Override
-	public String getNom() {
-		return null;
-	}
+    public BasicAttaque() {
+    }
 
-	@Override
-	public String getDescription() {
-		return null;
-	}
+    public BasicAttaque(String nom, String description, int degats, double chanceToucher) {
+        this.nom = nom;
+        this.description = description;
+        this.degats = degats;
+        this.chanceToucher = chanceToucher;
+    }
 
-	@Override
-	public int getChanceToucher() {
-		return 0;
-	}
+    /**
+     * Cette méthode génère un nombre aléatoire entre 0 et 100
+     * Si ce nombre est inférieur à la chance de toucher, retourne les degats
+     * Sinon affiche une erreur et retourn 0
+     * @return
+     */
+    public int lancerAttaque() {
+        Random random = new Random();
+        // Génère un nombre aléatoire à virgule entre 0 et 100
+        double nbr = random.nextDouble() * 100;
 
-	@Override
-	public void setNom(String nom) {
-	}
+        if(nbr < getChanceToucher()) {
+            return getDegats();
+        } else {
+            System.out.println("L'attaque a échoué");
+        }
 
-	@Override
-	public void setDescription(int description) {
-	}
+        return 0;
+    }
 
-	@Override
-	public void setChanceToucher(double chanceToucher) {
-	}
+    @Override
+    public String getNom() {
+        return nom;
+    }
 
-	public int lancerAttaque(ICombattant lanceur, ICombattant cible)
-	{
-		// Avec un nombre aleatoire random compris entre 0 et 100
-		int x = 0 + (int)(Math.random() * ((100 - 0) + 1));
-		// si random < chanceToucher
-		if (x < getChanceToucher() ) {
-			return lanceur.getDegat();
-		}
-		else {
-			System.out.println("Votre attaque à échoué !");
-			return 0;
-			
-		}
-		// retourner lanceur.Degats
-		// sinon renvoyer 0 et afficher un message d'echec
-	}
+    @Override
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public int getDegats() {
+        return degats;
+    }
+
+    @Override
+    public void setDegats(int degats) {
+        this.degats = degats;
+    }
+
+    @Override
+    public double getChanceToucher() {
+        return chanceToucher;
+    }
+
+    @Override
+    public void setChanceToucher(double chanceToucher) {
+        if(chanceToucher >= 0 && chanceToucher <= 100) {
+            this.chanceToucher = chanceToucher;
+        } else {
+            System.out.println("La chance de toucher doit être comprise entre 0 et 100");
+        }
+    }
 }

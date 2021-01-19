@@ -16,9 +16,9 @@ public interface ICombattant {
 
     // Getters et Setters
     public String getNom();
-    public int getDegat();
+    public int getDegats();
     public int getPointDeVie();
     public void setNom(String nom);
-    public void setDegat(int degat);
+    public void setDegats(int degats);
     public void setPointDeVie(int pointDeVie);
 }

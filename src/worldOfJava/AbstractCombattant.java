@@ -1,77 +1,60 @@
 package worldOfJava;
 
 public abstract class AbstractCombattant implements ICombattant {
-	/**
-	 * Définition des variables qui représenteront les statistiques du combattant
-	 */
-	public String nom;
-	public int pointDeVie;
-	public int degat;
 
-	public AbstractCombattant() {}
+    private String nom;
+    private int degats;
+    private int pointDeVie;
 
-	/**
-	 * Mise en place du constructeur de la classe mère
-	 * @param pointDeVie
-	 * @param degat
-	 * @param nom
-	 * @param QspellCd
-	 */
-	public AbstractCombattant(String nom, int pointDeVie, int degat){
-		super();
-		this.pointDeVie = pointDeVie;
-		this.degat = degat;
-		this.nom = nom;
-	}
+    public AbstractCombattant() {
+    }
 
-	/**
-	 * Mise en place des getters et setters
-	 */
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public AbstractCombattant(String nom, int degats, int pointDeVie) {
+        this.nom = nom;
+        this.degats = degats;
+        this.pointDeVie = pointDeVie;
+    }
 
-	public int getPointDeVie() {
-		return pointDeVie;
-	}
-	public void setPointDeVie(int pointDeVie) {
-		this.pointDeVie = pointDeVie;
-	}
+    public void attaquer(ICombattant adversaire) {
+        System.out.println(this.getNom() + " attaque " + adversaire.getNom() + " et lui inflige " + this.getDegats() + " points de dégats");
+        adversaire.defendre(this.getDegats());
+        System.out.println("Il reste à " + adversaire.getNom() + " : " + adversaire.getPointDeVie() + " pdv");
+    }
 
-	public int getDegat() {
-		return degat;
-	}
-	public void setDegat(int degat) {
-		this.degat = degat;
-	}
+    public void defendre(int degats) {
+        this.setPointDeVie(this.getPointDeVie() - degats);
+    }
 
-	
-	@Override
-	public void attaquer(ICombattant adversaire) {
-		System.out.println("Votre attaque inflige "+this.getDegat()+" points de dégats.");
-		adversaire.defendre(this.getDegat());
-		System.out.println("Au tour de l'ennemi !");
-		
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	@Override
-	public void defendre(int degat) {
-		this.setPointDeVie(this.getPointDeVie()-degat);
-		
-	}
-	
-	
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getDegats() {
+        return degats;
+    }
+
+    public void setDegats(int degats) {
+        this.degats = degats;
+    }
+
+    public int getPointDeVie() {
+        return pointDeVie;
+    }
+
+    public void setPointDeVie(int pointDeVie) {
+        this.pointDeVie = pointDeVie;
+    }
+
     @Override
     public String toString() {
         return "AbstractCombattant{" +
                 "nom='" + nom + '\'' +
-                ", degat=" + degat +
+                ", degats=" + degats +
                 ", pointDeVie=" + pointDeVie +
                 '}';
     }
-	
-
 }
