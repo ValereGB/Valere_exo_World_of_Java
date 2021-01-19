@@ -6,9 +6,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Monde {
+	
+	private static String[] Classe;
 
     static Scanner scanner = new Scanner(System.in);
 
+    public static Classe GetClasse(String nom)
+    {
+       return null; //La classe avec le nom : "nom"
+    }
+    
+    
+    
     /**
      * Cette méthode fait combattre à tour de rôle le personnage et le monstre
      * @param personnage
