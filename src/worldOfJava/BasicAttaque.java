@@ -74,6 +74,9 @@ public class BasicAttaque implements IAttaque{
         return chanceToucher;
     }
 
+    /**
+     * Calcul des chances de toucher pour le personnage afin de créer une situation d'échec d'attaque ou non
+     */
     @Override
     public void setChanceToucher(double chanceToucher) {
         if(chanceToucher >= 0 && chanceToucher <= 100) {

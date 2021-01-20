@@ -1,7 +1,10 @@
 package worldOfJava;
 
-
-
+/**
+ * Classe Personnage qui hérite de abstractCombattant et qui aura donc les mêmes choix de stats
+ * @author ValouLeLoup
+ *
+ */
 public class Personnage extends AbstractCombattant{
 
   private Classe classe;
